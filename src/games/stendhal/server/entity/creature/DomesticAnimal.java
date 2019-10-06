@@ -33,6 +33,7 @@ public abstract class DomesticAnimal extends Creature {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DomesticAnimal.class);
 
+	protected int minWeight = 0;
 	protected int weight;
 	int incHP = 2;
 

@@ -35,6 +35,7 @@ import marauroa.common.game.SyntaxException;
  */
 public class BabyDragon extends Pet {
 
+	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(BabyDragon.class);
 
@@ -81,7 +82,9 @@ public class BabyDragon extends Pet {
 		setUp();
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
-
+		minWeight = 1;
+		setWeight(minWeight);
+		
 		if (owner != null) {
 			// add pet to zone and create RPID to be used in setPet()
 			owner.getZone().add(this);
@@ -104,6 +107,12 @@ public class BabyDragon extends Pet {
 
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
+		
+		minWeight = 1;
+		if (!has("weight")) {
+			setWeight(minWeight);
+		}
+		
 
 		update();
 	}

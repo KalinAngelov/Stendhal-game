@@ -349,7 +349,7 @@ public abstract class Pet extends DomesticAnimal {
 				 owner.sendPrivateText("Your pet is starving!");
 			 }
 			LOGGER.debug("Pet starves");
-			if (weight > 0) {
+			if (weight > minWeight) {
 				setWeight(weight - 1);
 			} else {
 				// apply starvation damage at a safe moment

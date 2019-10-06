@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
@@ -70,6 +71,52 @@ public class BabyDragonTest {
 		template.put("hp", 30);
 		final BabyDragon drako = new BabyDragon(template, PlayerTestHelper.createPlayer("bob"));
 		assertThat(drako.getFoodNames(), is(foods));
+	}
+	
+	@Test
+	public final void testBabyDragonGetWeightMinimal() {
+		Player bob =  PlayerTestHelper.createPlayer("bob"); 
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(bob);
+		
+		RPObject template = new RPObject();
+		template.put("hp", 30);
+		final BabyDragon drako1 = new BabyDragon(template, bob);
+		assertEquals(1, drako1.getWeight());
+		
+		final BabyDragon drako2 = new BabyDragon();
+		assertEquals(1, drako2.getWeight());
+	}
+	
+	@Test
+	public final void testBabyDragonStarvationAtMinimalWeight() {
+		Player bob =  PlayerTestHelper.createPlayer("bob"); 
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(bob);
+		
+		RPObject template = new RPObject();
+		template.put("hp", 30);
+		final BabyDragon drako = new BabyDragon(template, bob);
+		zone.add(drako);
+		drako.hunger = 1000;
+		drako.logic();
+		assertEquals(1, drako.getWeight());
+	}
+	
+	@Test
+	public final void testBabyDragonStarvation() {
+		Player bob =  PlayerTestHelper.createPlayer("bob"); 
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(bob);
+		
+		RPObject template = new RPObject();
+		template.put("hp", 30);
+		final BabyDragon drako = new BabyDragon(template, bob);
+		zone.add(drako);
+		drako.weight = 2;
+		drako.hunger = 1000;
+		drako.logic();
+		assertEquals(1, drako.getWeight());
 	}
 
 }

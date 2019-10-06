@@ -308,5 +308,20 @@ public class SheepTest {
 		meh.eat(food);
 		assertEquals(100, meh.getWeight());
 	}
+	
+	@Test
+	public final void testSheepGetWeightMinimal() {
+		Player bob =  PlayerTestHelper.createPlayer("bob"); 
+		final StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(bob);
+
+		RPObject template = new RPObject();
+		template.put("hp", 30);
+		final Sheep meh1 = new Sheep(template, bob);
+		assertEquals(0, meh1.getWeight());
+		
+		final Sheep meh2 = new Sheep();
+		assertEquals(0, meh2.getWeight());
+	}
 
 }
