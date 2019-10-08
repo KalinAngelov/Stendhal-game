@@ -86,7 +86,7 @@ public class RainbowBeansTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
-		// player was too low level last time. make them at leastlevel 50
+		// player was too low level last time. make them at least level 50
 		player.addXP(248800);
 		assertThat(player.getLevel(), greaterThanOrEqualTo(30));
 
@@ -96,7 +96,7 @@ public class RainbowBeansTest {
 		en.step(player, "deal");
 		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Aight, ain't for everyone. Anythin else you want, you say so.", getReply(npc));
+		assertEquals("Alright, ain't for everyone. Anything else yer want, you say so.", getReply(npc));
 		en.step(player, "help");
 		assertEquals("To be honest mate I can't help you with much, you're better off in the city for that.", getReply(npc));
 		en.step(player, "quest");
@@ -148,7 +148,7 @@ public class RainbowBeansTest {
 		en.step(player, "hi");
 		assertEquals("Oi, you. Back for more rainbow beans?", getReply(npc));
 		en.step(player, "no");
-		assertEquals("Aight, ain't for everyone. Anythin else you want, you say so.", getReply(npc));
+		assertEquals("Alright, ain't for everyone. Anything else yer want, you say so.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 
@@ -163,7 +163,7 @@ public class RainbowBeansTest {
 	}
 
 	/**
-	 * Check for proper behavior when beans are used too soon after previous
+	 * Check for proper behaviour when beans are used too soon after previous
 	 * use.
 	 */
 	@Test
