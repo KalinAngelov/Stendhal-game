@@ -115,7 +115,15 @@ public class SummonPetScroll extends Scroll {
 			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
 			return false;
 		}
-
+		// reset pet's information before place back
+		pet.setLevel(BlankPetScroll.getPetLevel());
+		pet.setTitle(BlankPetScroll.getPetName());
+		pet.setBaseHP(BlankPetScroll.getPetBaseHp());
+		pet.setHP(BlankPetScroll.getPetHp());
+		pet.setXP(BlankPetScroll.getPetXp());
+		pet.setWeight(BlankPetScroll.getPetWeight());
+		pet.setAtk(BlankPetScroll.getPetAtk());
+		pet.setDef(BlankPetScroll.getPetDef());
 		pet.setPosition(player.getX(), player.getY() + 1);
 		dropBlank(player);
 		return true;
@@ -137,7 +145,6 @@ public class SummonPetScroll extends Scroll {
 		//revert to blank
 		final Item blankPetScroll = SingletonRepository.getEntityManager().getItem(
 				"blank pet scroll");
-
 		player.equipOrPutOnGround(blankPetScroll);
 		player.sendPrivateText("You summon your pet back onto this plane. Faint smoke lingers from the page.");
 
