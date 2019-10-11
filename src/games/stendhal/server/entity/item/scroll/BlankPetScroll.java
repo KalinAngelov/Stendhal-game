@@ -21,10 +21,13 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 //import games.stendhal.server.entity.player.PetOwner;;
 
+
 /**
  * Represents an empty/blank pet scroll.
  */
 public class BlankPetScroll extends Scroll {
+	
+	// Create a hashMap
 
 	// private static final Logger logger = Logger.getLogger(EmptyScroll.class);
 
@@ -50,7 +53,50 @@ public class BlankPetScroll extends Scroll {
 	public BlankPetScroll(final BlankPetScroll item) {
 		super(item);
 	}
-
+    
+	// use string and int to store the pet's information
+	private static String storedPetName;
+	private static int storedPetBaseHp;
+	private static int storedPetHp;
+	private static int storedPetXp;
+	private static int storedPetWeight;
+	private static int storedPetAtk;
+	private static int storedPetDef;
+	private static int storedPetLevel;
+	
+	// return pet's information
+	public static String getPetName()
+	{
+		return storedPetName;
+	}
+	public static int getPetBaseHp()
+	{
+		return storedPetBaseHp;
+	}
+	public static int getPetHp()
+	{
+		return storedPetHp;
+	}
+	public static int getPetXp()
+	{
+		return storedPetXp;
+	}
+	public static int getPetWeight()
+	{
+		return storedPetWeight;
+	}
+	public static int getPetAtk()
+	{
+		return storedPetAtk;
+	}
+	public static int getPetDef()
+	{
+		return storedPetDef;
+	}
+	public static int getPetLevel()
+	{
+		return storedPetLevel;
+	}
 	/**
 	 * Use a blank pet scroll.
 	 *
@@ -67,10 +113,17 @@ public class BlankPetScroll extends Scroll {
 					"summon pet scroll");
 			summonPetScroll.setInfoString(petName);
 			player.equipOrPutOnGround(summonPetScroll);
-
 			final Pet pet = player.getPet();
-
-
+			// get pet's information before removing the pet
+            storedPetName = pet.getTitle();
+            storedPetBaseHp = pet.getBaseHP();
+            storedPetHp = pet.getHP();
+            storedPetXp = pet.getXP();
+            storedPetWeight = pet.getWeight();
+            storedPetAtk = pet.getAtk();
+            storedPetDef = pet.getDef();
+            storedPetLevel = pet.getLevel();
+			
 			if (pet != null) {
 				//petOwner.storePet(pet);
 				player.removePet(pet);
