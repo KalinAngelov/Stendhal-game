@@ -24,6 +24,7 @@ import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPAction;
@@ -251,6 +252,53 @@ public class SourceObjectTest {
 		assertEquals("too many are reduced to all", dropitem.getQuantity(), so.getQuantity());
 	}
 
-
-
+	
+	@Test
+	public void testLuckyCharmStackingOnKeyring()
+	{
+		// sample testzone
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		// sample player
+		Player player = PlayerTestHelper.createPlayer("bob");
+		// lucky charm
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("lucky charm");
+		// create container bag, set it to keyring
+		player.equip("bag", item);
+		player.setFeature("keyring", true);
+		
+		// set number of lucky charms to ten
+		item.setQuantity(10);
+		
+		// populate the testzone with player
+		localzone.add(player);
+		// test if player has lucky a lucky charm
+		assertTrue(player.isEquipped("lucky charm"));
+		
+		EquipmentAction action = new EquipAction();
+		// RPAction from maurora - populate it with actions
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.BASE_SLOT, "bag");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "keyring");
+		
+		// do action on player
+		action.onAction(player, equip);
+		
+		assertTrue(player.isEquipped("lucky charm"));
+		assertTrue(player.isEquippedItemInSlot("keyring", "lucky charm"));
+		
+		RPObject newItem = player.getSlot("keyring").getFirst();
+		Item luckycharm = null;
+		// checks if the item popped from slot is an instance of item
+		if (newItem instanceof Item)
+			// if so, assign it to luckycharm
+			luckycharm = (Item) newItem;
+		assertNotNull(luckycharm);
+		assertEquals("lucky charm: ", luckycharm.getName());
+		assertEquals(1, luckycharm.getQuantity());
+	}
 }
