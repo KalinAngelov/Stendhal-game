@@ -111,7 +111,8 @@ public class EmotionCrystals extends AbstractQuest {
 				if(!gatheredCrystals.contains(color + " emotion crystal")) {
 				  gatheredCrystals.add(color + " emotion crystal");
 				}
-			} else {
+			} 
+			if (!gatheredCrystals.contains(color + " emotion crystal")) {	
 				hasAllCrystals = false;
 			}
 		}
