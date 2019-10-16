@@ -328,6 +328,11 @@ class DestinationObject extends MoveableObject {
 					if (object instanceof StackableItem) {
 						// found another stackable
 						final StackableItem other = (StackableItem) object;
+						if ( (rpslot.getName().equals("content")) && (other.getName().equals("lucky charm")) && (stackEntity.getName().equals("lucky charm"))) {
+							player.sendPrivateText(rpslot.getName() + "/");
+							break;
+						}
+						
 						if (other.isStackable(stackEntity)) {
 							new ItemLogger().merge(player, stackEntity, other);
 
