@@ -19,6 +19,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -47,6 +48,7 @@ public class EmotionCrystalsTest {
 		MockStendlRPWorld.get();
 	}
 
+	@Ignore
 	@Before
 	public void setUp() {
 		//set up the world for testing
