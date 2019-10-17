@@ -298,7 +298,7 @@ public class SourceObjectTest {
 			// if so, assign it to luckycharm
 			luckycharm = (Item) newItem;
 		assertNotNull(luckycharm);
-		assertEquals("lucky charm: ", luckycharm.getName());
+		assertEquals("lucky charm", luckycharm.getName());
 		assertEquals(1, luckycharm.getQuantity());
 	}
 }

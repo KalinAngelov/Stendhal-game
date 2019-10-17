@@ -321,28 +321,31 @@ class SourceObject extends MoveableObject {
 			// no extra logger warning needed here as each is inside the methods called above, where necessary
 			return false;
 		}
-		// Lucky charm to keyring handling
-		if ((dest.getContentSlotName().equals("keyring")) && (item.getName().equals("lucky charm"))) {
-			// if there is more than one lucky charm, create a new stack for it
-			if (item.getQuantity() > 1) {
-//				Stackable newStack = new StackableItem((StackableItem) item);
-//				newStack.setQuantity(1);
+		
+		// check if destination has any slots
+		if (dest.getContentSlotName() != null && item.getName() != null) {
+			if ((dest.getContentSlotName().equals("keyring")) && (item.getName().equals("lucky charm"))) {
+				// if there is more than one lucky charm, create a new stack for it
+				if (item.getQuantity() > 1) {
+//					Stackable newStack = new StackableItem((StackableItem) item);
+//					newStack.setQuantity(1);
 				
-				final String[] srcInfo = getLogInfo();
-				Stackable stackOne = (StackableItem) removeFromWorld();
-				stackOne.setQuantity(1);
+					final String[] srcInfo = getLogInfo();
+					Stackable stackOne = (StackableItem) removeFromWorld();
+					stackOne.setQuantity(1);
 
-				logger.debug("item removed");
+					logger.debug("item removed");
 				
-				dest.addToWorld((Entity) stackOne, player);
-				logger.debug("item readded");
+					dest.addToWorld((Entity) stackOne, player);
+					logger.debug("item readded");
 
-				new ItemLogger().equipAction(player, (Entity) stackOne, srcInfo, dest.getLogInfo());
+					new ItemLogger().equipAction(player, (Entity) stackOne, srcInfo, dest.getLogInfo());
 
-				return true;
+					return true;
+				}
+				return false;
 			}
-			return false;
-		}
+		} // if checking for existance of slots in destinatinon
 		
 		
 		final String[] srcInfo = getLogInfo();
