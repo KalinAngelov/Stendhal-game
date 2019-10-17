@@ -45,7 +45,6 @@ public class EmotionCrystalsTest {
 	private SpeakerNPC npc;
 	private Engine en;
 
-	private String questSlot;
 	private EmotionCrystals quest;
 
 	@BeforeClass
@@ -71,7 +70,7 @@ public class EmotionCrystalsTest {
 
 		quest = new EmotionCrystals();
 		quest.addToWorld();
-		questSlot = quest.getSlotName();
+
 
 		player = PlayerTestHelper.createPlayer("bob");
 		zone.add(player);
@@ -112,7 +111,6 @@ public class EmotionCrystalsTest {
         List<String> playerHistory3 = quest.getHistory(player);
         int size3 = playerHistory3.size();
         String crystalsSentence3 = playerHistory3.get(size3-1);
-        System.out.println(crystalsSentence3);
         //check the travel log for all 3 crystals
         assertEquals("I have found the following crystals: red emotion crystal, blue emotion crystal, and yellow emotion crystal", crystalsSentence3);
 
