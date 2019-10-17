@@ -200,3 +200,21 @@ Notable contributors:
 - SnowFlake
   · Maps maker
   · NPCs
+  
+  
+  Student contributors/authors:
+
+- Kamil Synak
+  · Bugs fixer
+- Adrian Szvoren
+  · Bugs fixer
+- Nikolay Avramov
+  · Bugs fixer
+- Kalin Angelov
+  · Bugs fixer
+- Yecheng Chu
+  · Bugs fixer
+- Jake Fitzwater
+  · Bugs fixer
+- Mateusz Wasilewski
+  · Bugs fixer  
