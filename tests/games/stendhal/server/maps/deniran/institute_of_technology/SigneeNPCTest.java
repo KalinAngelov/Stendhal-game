@@ -21,7 +21,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
  */
 public class SigneeNPCTest extends ZonePlayerAndNPCTestImpl {
 	
-	private static final String ZONE_NAME = "0_deniran_deniran_e";
+	private static final String ZONE_NAME = "0_deniran_deniran";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

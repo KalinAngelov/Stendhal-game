@@ -120,6 +120,7 @@
 			<destination zone="int_deniran_castle" ref="entrance_right" />
 			<attribute name="move.continuous" />
 		</portal>
+		<configurator class-name="games.stendhal.server.maps.deniran.institute_of_technology.SigneeNPC"></configurator>
 
 
 	</zone>
