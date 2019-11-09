@@ -6,10 +6,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.status.StatusType;
+import games.stendhal.server.entity.status.StatusList;
+import games.stendhal.server.entity.status.SleepStatus;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
-//import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
@@ -29,9 +31,9 @@ public class SleepItemTest {
 	@Test
 	public void testSleepingBagCreation() {
 		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
-		assertNotNull("Generated item is not null", sleepingBag);
+		assertNotNull("Generated item is null", sleepingBag);
 		assertTrue("The sleeping bag is not a SleepItem", sleepingBag instanceof SleepItem);
-		assertTrue("The sleeping bag is persistent", !sleepingBag.isPersistent());
+		assertTrue("The sleeping bag is not persistent", sleepingBag.isPersistent());
 	}
 	
 	@Test
@@ -48,7 +50,9 @@ public class SleepItemTest {
 		sleepingBag.setPosition(1, 0);
 
 		assertTrue(sleepingBag.onUsed(player));
-		//assertTrue(player.hasStatus(StatusType.SLEEPING));
+		
+		assertTrue("The player is not on the sleeping bag", player.nextTo(sleepingBag, 0));
+		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
 	
 	@Test
@@ -64,7 +68,28 @@ public class SleepItemTest {
 		player.equip("bag", sleepingBag);
 
 		assertTrue(sleepingBag.onUsed(player));
-		//assertTrue(player.hasStatus(StatusType.SLEEPING));
+		
+		assertTrue("The player is not on the sleeping bag", player.nextTo(sleepingBag, 0));
+		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
+	
+	@Test
+	public void testSleepingBagWakeUpOption() {
+		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
+		assertNotNull(sleepingBag);
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		assertNotNull(player);
+		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		SingletonRepository.getRPWorld().addRPZone(zone);
+		zone.add(player);
+		
+		zone.add(sleepingBag);
+		sleepingBag.setPosition(1, 0);
+		StatusList playerStatus = player.getStatusList();
+        playerStatus.inflictStatus(new SleepStatus(), player);
 
+		assertTrue(sleepingBag.onUsed(player));
+		assertTrue("The player is not awake", !player.hasStatus(StatusType.SLEEPING));
+	}
+	
 }
