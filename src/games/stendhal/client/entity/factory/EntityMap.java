@@ -166,6 +166,8 @@ public final class EntityMap {
 		register("weather_entity", null, null, InvisibleEntity.class);
 
 		register("looped_sound_source", null, null, LoopedSoundSource.class);
+		
+		register("item", "tool", "sleeping_bag", UseableItem.class);
 	}
 
 	/**
