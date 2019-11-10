@@ -80,20 +80,20 @@ public class SleepItem extends Item {
 				if (!nextTo(user)) {
 					user.sendPrivateText("The sleeping item is too far away");
 					return false;
-				}
+				} 
 			}
-			
 			Status status;
 			if(!player.hasStatus(StatusType.SLEEPING))
 			{
 				status = new SleepStatus();
-				player.getStatusList().inflictStatus(status, player);
+				player.getStatusList().inflictStatus(status, this);
 				
 				//Does not seem to work consistently.
 		        //put("menu", "Wake up|Use");
 			}
 			else
 			{
+				player.getStatusList().removeAll(StatusType.SLEEPING);
 				//Does not seem to work consistently.
 				//put("menu", "Sleep|Use");
 			}

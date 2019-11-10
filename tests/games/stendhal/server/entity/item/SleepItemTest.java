@@ -55,8 +55,6 @@ public class SleepItemTest {
 		sleepingBag.setPosition(1, 0);
 
 		assertTrue(sleepingBag.onUsed(player));
-
-		assertTrue("The player is not on the sleeping bag", player.nextTo(sleepingBag, 0));
 		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
 	
@@ -77,7 +75,6 @@ public class SleepItemTest {
 
 		assertTrue(sleepingBag.onUsed(player));
 		
-		assertTrue("The player is not on the sleeping bag", player.nextTo(sleepingBag, 0));
 		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
 	
@@ -102,5 +99,4 @@ public class SleepItemTest {
 		assertTrue(sleepingBag.onUsed(player));
 		assertTrue("The player is not awake", !player.hasStatus(StatusType.SLEEPING));
 	}
-	
 }
