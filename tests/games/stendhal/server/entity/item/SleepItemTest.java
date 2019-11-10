@@ -27,7 +27,9 @@ public class SleepItemTest {
 		ItemTestHelper.generateRPClasses();
 		
 	}
-	
+	/**
+	 * Tests the sleeping bag item creation. 
+	 */
 	@Test
 	public void testSleepingBagCreation() {
 		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
@@ -36,6 +38,9 @@ public class SleepItemTest {
 		assertTrue("The sleeping bag is not persistent", sleepingBag.isPersistent());
 	}
 	
+	/**
+	 * Tests the sleeping option of the sleeping bag when it is on ground.
+	 */
 	@Test
 	public void testSleepingBagSleepOptionOnGround() {
 		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
@@ -50,11 +55,14 @@ public class SleepItemTest {
 		sleepingBag.setPosition(1, 0);
 
 		assertTrue(sleepingBag.onUsed(player));
-		
+
 		assertTrue("The player is not on the sleeping bag", player.nextTo(sleepingBag, 0));
 		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
 	
+	/**
+	 * Tests the sleeping option of the sleeping bag when it is in inventory.
+	 */
 	@Test
 	public void testSleepingBagSleepOptionInBag() {
 		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
@@ -73,6 +81,9 @@ public class SleepItemTest {
 		assertTrue("The player is not sleeping", player.hasStatus(StatusType.SLEEPING));
 	}
 	
+	/**
+	 * Tests the wake up option of the sleeping bag.
+	 */
 	@Test
 	public void testSleepingBagWakeUpOption() {
 		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
