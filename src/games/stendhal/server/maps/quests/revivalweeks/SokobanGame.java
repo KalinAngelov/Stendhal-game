@@ -44,7 +44,7 @@ import games.stendhal.server.util.TimeUtil;
 import marauroa.server.db.command.DBCommandQueue;
 
 /**
- * A Sokoban game.
+ * A  Sokoban game.
  *
  * @author hendrik
  */
