@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 /** 
  * Class for handling the sleep status.
  * 
@@ -31,19 +31,12 @@ public class SleepStatusHandler implements StatusHandler<SleepStatus> {
 			// notify it that it is asleep
 			if (entity != null) {
 			    entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are asleep.");
-			    // stop the entity's movement (not working as intended)
-				if (entity instanceof Player) {
-					((Player) entity).forceStop();
-				} else {
-					entity.stop();
-				}
-				entity.clearPath();
 			    // set the status
-				statusList.addInternal(status);
-				
+				statusList.addInternal(status);				
 				entity.notifyWorldAboutChanges();
 			}
-		}	
+		}
+		TurnNotifier.get().notifyInTurns(0, new SleepStatusTurnListener(statusList));
 	}
 	
 	/**

@@ -42,8 +42,5 @@ public class SleepStatusTest {
 		assertTrue(sleepingBag.onUsed(player));
 		player.applyMovement();
 		assertTrue("The player should not be able to move", (oldX == player.getX() && oldY == player.getY()));
-        
 	}
-		
-
 }
