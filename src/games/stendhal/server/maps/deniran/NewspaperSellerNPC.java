@@ -52,8 +52,8 @@ public class NewspaperSellerNPC implements ZoneConfigurator {
         }
     };
 
-    // This determines how the NPC will look like. welcomernpc.png is a picture in data/sprites/npc/
-    npc.setEntityClass("welcomernpc");
+    // This determines how the NPC will look like.
+    npc.setEntityClass("man_002_npc");
     // set a description for when a player does 'Look'
     npc.setDescription("You see a newspaper seller, he looks excited about something.");
     // Set the initial position to be the first node on the Path you defined above.
