@@ -3,7 +3,6 @@ package games.stendhal.server.entity.status;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 /**
  * Class for handling the sleep status each turn
  *
@@ -36,9 +35,9 @@ public class SleepStatusTurnListener implements TurnListener {
 			entity.heal((entity.getBaseHP() / 1000), true);
 		}
 		
-		// Stop the entity's movement
+		/*// Stop the entity's movement
 		((Player) entity).forceStop();	
-		entity.clearPath();
+		entity.clearPath();*/
 		
 		entity.notifyWorldAboutChanges();
 		TurnNotifier.get().notifyInTurns(0, this);

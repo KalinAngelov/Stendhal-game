@@ -1310,6 +1310,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			logger.debug("Damaged " + damage + " points by " + attacker.getID());
 		}
 
+		if (this.hasStatus(StatusType.SLEEPING)) {
+			this.getStatusList().removeAll(StatusType.SLEEPING);
+		}
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
 			final int currentTurn = SingletonRepository.getRuleProcessor()
