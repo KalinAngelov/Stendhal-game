@@ -660,6 +660,7 @@
 			<destination zone="0_deniran" ref="deniran_castle_entrance_right" />
 			<attribute name="move.continuous" />
 		</portal>
+		<configurator class-name="games.stendhal.server.maps.deniran.institute_of_technology.LonNPC" />
 
 	</zone>
 
