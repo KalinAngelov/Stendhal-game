@@ -58,7 +58,7 @@ public class NewspaperSellerNPCTest {
 		assertFalse(zone.getNPCList().isEmpty());
 		final NPC newspaperSeller = zone.getNPCList().get(0);
 		assertThat(newspaperSeller.getName(), is("Tom"));
-		assertThat(newspaperSeller.getDescription(), is("You see a newspaper seller, he looks excited about something"));
+		assertThat(newspaperSeller.getDescription(), is("You see a newspaper seller, he looks excited about something."));
 	}
 	
 	/**
@@ -90,13 +90,13 @@ public class NewspaperSellerNPCTest {
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat("help text", getReply(newspaperSeller),
-				is("Ask me about #newspaper and I will tell you about the new newspapers"));
+				is("Ask me about #newspaper and I will tell you about the new newspapers."));
 		
 		sentence = new SentenceImplementation(new Expression("newspaper", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat("help text", getReply(newspaperSeller),
-				is("The newspaper coming  will tell stories of the biggest accomplishments across the Stendhal world"));
+				is("The newspaper coming  will tell stories of the biggest accomplishments across the Stendhal world!"));
 
 		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
