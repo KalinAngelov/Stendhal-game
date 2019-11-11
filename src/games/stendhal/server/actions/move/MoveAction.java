@@ -39,6 +39,7 @@ public class MoveAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(DIR)) {
 			final int dirval = action.getInt(DIR);
+			// if the player is sleeping wake them up
 			if (player.hasStatus(StatusType.SLEEPING)) {
 				player.getStatusList().removeAll(StatusType.SLEEPING);;
 			}
