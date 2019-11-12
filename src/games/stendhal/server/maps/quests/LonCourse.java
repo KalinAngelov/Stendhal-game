@@ -12,17 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ConversationPhrases;
+
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.*;
 import games.stendhal.server.entity.npc.condition.*;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -43,6 +39,7 @@ import java.util.List;
  * <li>None</li>
  * </ul>
  */
+
 public class LonCourse extends AbstractQuest {
 	public static final String QUEST_SLOT = "lon_course";
 
@@ -55,7 +52,7 @@ public class LonCourse extends AbstractQuest {
 
 	// assertThat(player.getAdminLevel(), is(adminlevel));
 	private void prepareRequestingStep() {
-		final SpeakerNPC npc = npcs.get("Lon");
+		final SpeakerNPC npc = npcs.get("Lon Jatham");
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",

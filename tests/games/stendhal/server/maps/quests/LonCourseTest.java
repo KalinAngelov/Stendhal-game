@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.deniran.institute_of_technology.LonNPC;
 import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
@@ -55,8 +56,9 @@ public class LonCourseTest {
 	public void setup() {
 		PlayerTestHelper.removeAllPlayers();
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
-		new RetiredAdventurerNPC().configureZone(zone, null);
-		lon = SingletonRepository.getNPCList().get("Lon") ;
+		new LonNPC().configureZone(zone, null);
+		lon = SingletonRepository.getNPCList().get("Lon Jatham");
+		System.out.println(lon);
 	}
 
 	@Test
@@ -73,9 +75,9 @@ public class LonCourseTest {
 		assertTrue(player.isQuestCompleted("lon_course"));
 		assertTrue(lon.isTalking());
 
-		en.step(player, "recruit");
+		en.step(player, "Hi Lon, can I get an extension?");
 		assertEquals(
-				"RECRUIT MESSAGE HERE",
+				"Hello, I am Lon!",
 				getReply(lon));
 		assertTrue(player.hasQuest("lon_course"));
 	}
