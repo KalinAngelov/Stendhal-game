@@ -40,7 +40,7 @@ public class SigneeNPC implements ZoneConfigurator {
 	//
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Signee") {
+			final SpeakerNPC npc = new SpeakerNPC("Signee") {
 
 			@Override
 			protected void createPath() {
