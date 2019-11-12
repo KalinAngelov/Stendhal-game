@@ -41,6 +41,7 @@ import utilities.PlayerTestHelper;
 public class LonCourseTest {
 
 	private SpeakerNPC lon;
+	private LonCourse lc;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -59,6 +60,10 @@ public class LonCourseTest {
 		new LonNPC().configureZone(zone, null);
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
 		System.out.println(lon);
+		
+		lc = new LonCourse();
+		
+		lc.addToWorld();
 	}
 
 	@Test
@@ -89,7 +94,6 @@ public class LonCourseTest {
 				"Recruit 1 student for my course!",
 				getReply(lon));
 		assertTrue(player.hasQuest("lon_course"));
-
 	}
 
 }

@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.*;
 import games.stendhal.server.entity.player.Player;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * QUEST: Lon Cours
+ * QUEST: Lon Course
  *
  * PARTICIPANTS:
  * <ul>
@@ -59,10 +60,10 @@ public class LonCourse extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
 			null,
-			ConversationStates.QUEST_OFFERED,
+			ConversationStates.ATTENDING,
 			// replace this message with something that makes sense
 			"Recruit 1 student for my course!",
-			null);
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
@@ -94,7 +95,6 @@ public class LonCourse extends AbstractQuest {
 	}
 
 	public String getTitle() {
-
 		return "Lon Jatham course";
 	}
 
