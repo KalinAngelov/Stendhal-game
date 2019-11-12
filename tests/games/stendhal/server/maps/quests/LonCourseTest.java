@@ -28,6 +28,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.deniran.institute_of_technology.LonNPC;
+import games.stendhal.server.maps.deniran.institute_of_technology.SigneeNPC;
 import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 
@@ -52,6 +53,7 @@ public class LonCourseTest {
 		PlayerTestHelper.removeAllPlayers();
 		StendhalRPZone zone = new StendhalRPZone("player_test");
 		new LonNPC().configureZone(zone, null);
+		new SigneeNPC().configureZone(zone, null);
 
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
 		signee = SingletonRepository.getNPCList().get("Signee");
