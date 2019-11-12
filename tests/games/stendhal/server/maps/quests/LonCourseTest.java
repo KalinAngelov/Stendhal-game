@@ -34,6 +34,7 @@ import utilities.PlayerTestHelper;
 public class LonCourseTest {
 
 	private SpeakerNPC lon;
+	private SpeakerNPC signee;
 	private LonCourse lc;
 
 	@BeforeClass
@@ -53,6 +54,7 @@ public class LonCourseTest {
 		new LonNPC().configureZone(zone, null);
 
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
+		signee = SingletonRepository.getNPCList().get("Signee");
 
 		lc = new LonCourse();
 		lc.addToWorld();
@@ -65,6 +67,7 @@ public class LonCourseTest {
 		final Player player = PlayerTestHelper.createPlayer("player");
 
 		final Engine en = lon.getEngine();
+		final Engine enSignee = signee.getEngine();
 
 		// Admin being tested
 		en.step(player, "hi");
@@ -94,7 +97,35 @@ public class LonCourseTest {
 				getReply(lon));
 
 		assertTrue(player.hasQuest("lon_course"));
-		
-	}
+		assertTrue(player.isQuestInState("lon_course", "start"));
 
+		// Admin being tested
+		enSignee.step(player, "hi");
+
+		assertTrue(player.hasQuest("lon_course"));
+		assertTrue(player.isQuestInState("lon_course", "start"));
+
+		assertTrue(signee.isTalking());
+
+		enSignee.step(player, "Hi, how are you?");
+		assertEquals(
+				"Hi. I wish I could learn #Java.",
+				getReply(signee));
+
+		enSignee.step(player, "java");
+		assertEquals(
+				"OK, I will sign up for this amazing course!",
+				getReply(signee));
+
+		assertTrue(player.isQuestInState("lon_course", "signed 1"));
+
+		en.step(player, "done");
+		assertEquals(
+				"Great, I can start the course then!",
+				getReply(lon));
+
+		assertTrue(player.hasQuest("lon_course"));
+		assertTrue(player.isQuestInState("lon_course", "done"));
+		assertTrue(player.isQuestCompleted("lon_course"));
+	}
 }
