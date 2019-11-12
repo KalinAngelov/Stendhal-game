@@ -56,6 +56,8 @@ public class LonCourse extends AbstractQuest {
 	// assertThat(player.getAdminLevel(), is(adminlevel));
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Lon Jatham");
+		final SpeakerNPC signeeNpc = npcs.get("Signee");
+		System.out.print(npcs);
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
@@ -65,7 +67,19 @@ public class LonCourse extends AbstractQuest {
 			"Recruit 1 student for my course!",
 			new SetQuestAction(QUEST_SLOT, "start"));
 
-		// Add QUEST which
+		signeeNpc.add(ConversationStates.ATTENDING,
+				"java",
+				new QuestInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.ATTENDING,
+				"OK, I will sign up for this amazing course!",
+				new SetQuestAction(QUEST_SLOT, "signed 1"));
+
+		npc.add(ConversationStates.ATTENDING,
+				"done",
+				new QuestInStateCondition(QUEST_SLOT, "signed 1"),
+				ConversationStates.ATTENDING,
+				"Great, I can start the course then!",
+				new SetQuestAction(QUEST_SLOT, "done"));
 	}
 
 	@Override
