@@ -13,12 +13,8 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,16 +22,13 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.deniran.institute_of_technology.LonNPC;
-import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject.ID;
 import utilities.PlayerTestHelper;
 
 public class LonCourseTest {
@@ -56,14 +49,14 @@ public class LonCourseTest {
 	@Before
 	public void setup() {
 		PlayerTestHelper.removeAllPlayers();
-		StendhalRPZone zone = new StendhalRPZone("admin_test");
+		StendhalRPZone zone = new StendhalRPZone("player_test");
 		new LonNPC().configureZone(zone, null);
+
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
-		System.out.println(lon);
-		
+
 		lc = new LonCourse();
-		
 		lc.addToWorld();
+
 	}
 
 	@Test
@@ -71,15 +64,14 @@ public class LonCourseTest {
 
 		final Player player = PlayerTestHelper.createPlayer("player");
 
-
 		final Engine en = lon.getEngine();
+
+		// Admin being tested
 		en.step(player, "hi");
-		// we assume the player has already completed the meet hayunn quest
-		// so that we know which of the greetings he will use
+
 		// player.setQuest("lon_course", "done");
 		assertTrue(!player.isQuestCompleted("lon_course"));
 		assertTrue(lon.isTalking());
-		System.out.println(en.getCurrentState());
 
 		en.step(player, "Hi Lon, can I get an extension?");
 		assertEquals(
@@ -87,13 +79,30 @@ public class LonCourseTest {
 				getReply(lon));
 		assertTrue(!player.hasQuest("lon_course"));
 
+		en.step(player, "Hi Lon, can I get an extension?");
+
 		en.step(player, "recruit");
-		System.out.println(en.getCurrentState());
-		
+
+		assertEquals(
+				null,
+				getReply(lon));
+		assertTrue(!player.hasQuest("lon_course"));
+
+		player.setAdminLevel(100);
+
+		en.step(player, "recruit");
 		assertEquals(
 				"Recruit 1 student for my course!",
 				getReply(lon));
+
 		assertTrue(player.hasQuest("lon_course"));
+
+//		player.setQuest("lon_course", "done");
+//		en.step(player, "recruit");
+//
+//		assertEquals(
+//				"Thanks, the course is full now!",
+//				getReply(lon));
 	}
 
 }

@@ -59,18 +59,11 @@ public class LonCourse extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
-			null,
+			new AdminCondition(100),
 			ConversationStates.ATTENDING,
 			// replace this message with something that makes sense
 			"Recruit 1 student for my course!",
 			new SetQuestAction(QUEST_SLOT, "start"));
-
-		npc.add(ConversationStates.ATTENDING,
-			"recruit",
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"Thanks, the course is full now!",
-			null);
 
 		// Add QUEST which
 	}
