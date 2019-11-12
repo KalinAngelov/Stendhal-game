@@ -177,6 +177,8 @@ public class StendhalQuestSystem {
 		loadQuest(new WizardBank());
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
+		// custom quest
+		loadQuest(new LonCourse());
 
 		if (Occasion.CHRISTMAS) {
 			loadQuest(new GoodiesForRudolph());
