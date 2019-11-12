@@ -58,7 +58,7 @@ public class LonCourse extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
-			true,
+			null,
 			ConversationStates.QUEST_OFFERED,
 			// replace this message with something that makes sense
 			"Recruit 1 student for my course!",
