@@ -71,15 +71,25 @@ public class LonCourseTest {
 		en.step(player, "hi");
 		// we assume the player has already completed the meet hayunn quest
 		// so that we know which of the greetings he will use
-		player.setQuest("lon_course", "done");
-		assertTrue(player.isQuestCompleted("lon_course"));
+		// player.setQuest("lon_course", "done");
+		assertTrue(!player.isQuestCompleted("lon_course"));
 		assertTrue(lon.isTalking());
+		System.out.println(en.getCurrentState());
 
 		en.step(player, "Hi Lon, can I get an extension?");
 		assertEquals(
 				"Hello, I am Lon!",
 				getReply(lon));
+		assertTrue(!player.hasQuest("lon_course"));
+
+		en.step(player, "recruit");
+		System.out.println(en.getCurrentState());
+		
+		assertEquals(
+				"Recruit 1 student for my course!",
+				getReply(lon));
 		assertTrue(player.hasQuest("lon_course"));
+
 	}
 
 }

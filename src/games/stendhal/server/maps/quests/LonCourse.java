@@ -49,18 +49,19 @@ public class LonCourse extends AbstractQuest {
 		return res;
 	}
 
-
+//	new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
+//			new AdminCondition()),
+	
 	// assertThat(player.getAdminLevel(), is(adminlevel));
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Lon Jatham");
 
 		npc.add(ConversationStates.ATTENDING,
 			"recruit",
-			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
-					new AdminCondition()),
+			true,
 			ConversationStates.QUEST_OFFERED,
 			// replace this message with something that makes sense
-			"RECRUIT MESSAGE HERE",
+			"Recruit 1 student for my course!",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
