@@ -23,6 +23,9 @@ public class NewspaperTest
 		ItemTestHelper.generateRPClasses();
 	}
 	
+	/**
+	 * Tests the newspaper item creation. 
+	 */
 	@Test
 	public void testNewspaperCreation()
 	{
@@ -31,6 +34,9 @@ public class NewspaperTest
 		assertTrue("The newspaper is not a NewspaperItem", newspaper instanceof Newspaper);
 	}
 	
+	/**
+	 * Tests the reading option of the newspaper when it is on ground.
+	 */
 	@Test
 	public void testNewspaperOnGround() {
 		final Item newspaper = SingletonRepository.getEntityManager().getItem("newspaper");
@@ -47,7 +53,10 @@ public class NewspaperTest
 		assertTrue(newspaper.onUsed(player));
 
 	}
-
+	
+	/**
+	 * Tests the reading option of the newspaper when it is in the bag.
+	 */
 	@Test
 	public void testNewspaperInTheBag() {
 		final Item newspaper = SingletonRepository.getEntityManager().getItem("newspaper");

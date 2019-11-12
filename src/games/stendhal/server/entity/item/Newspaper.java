@@ -10,12 +10,27 @@ import games.stendhal.server.entity.player.Player;
 
 public class Newspaper extends Item 
 {
+	
 	private NewspaperGUIPanel guiPanel;
+    
+	/**
+	 *
+	 * Creates a new Newspaper item.
+	 *
+	 * @param name
+	 *            name of Newspaper.
+	 * @param clazz
+	 *            class (or type) of item.
+	 * @param subclass
+	 *            subclass of this item.
+	 * @param attributes
+	 *            attributes (like attack). may be empty or <code>null</code>.
+	 */
 
 	public Newspaper(final String name, final String clazz, final String subclass, final Map<String,String> attributes) 
 	{
 		super(name, clazz, subclass, attributes);
-	}
+	} // Newspaper
 	
 	
 	/**
@@ -27,8 +42,14 @@ public class Newspaper extends Item
 	public Newspaper(final Newspaper item) 
 	{
 		super(item);
-	}
+	} // Newspaper
 	
+	/**
+	 * When read is pressed 
+	 *
+	 * @param user
+	 *            The user who used the item.
+	 */
 	@Override
 	public boolean onUsed(RPEntity user) 
 	{
@@ -54,5 +75,5 @@ public class Newspaper extends Item
 		} // if
 		
 		return false;
-	}
-}
+	} // onUsed
+} // class Newspaper
