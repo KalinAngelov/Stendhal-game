@@ -53,6 +53,7 @@ public class NewspaperTest
 		assertTrue(newspaper.onUsed(player));
 
 	}
+
 	
 	/**
 	 * Tests the reading option of the newspaper when it is in the bag.
@@ -74,3 +75,4 @@ public class NewspaperTest
 
 
 }
+

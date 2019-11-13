@@ -1,17 +1,20 @@
 package games.stendhal.server.entity.item;
 
+import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import games.stendhal.server.core.engine.db.AchievementDAO;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import marauroa.server.game.db.DAORegister;
 
 
 
 public class Newspaper extends Item 
 {
-	
-	private NewspaperGUIPanel guiPanel;
+	private Player player;
     
 	/**
 	 *
@@ -49,31 +52,52 @@ public class Newspaper extends Item
 	 *
 	 * @param user
 	 *            The user who used the item.
+	 * @throws SQLException 
 	 */
 	@Override
-	public boolean onUsed(RPEntity user) 
+	public boolean onUsed(RPEntity user)
 	{
 		if (user instanceof Player) 
 		{
-			if (isContained())
+          player = (Player) user;    
+		  if (isContained())
+		  {
+		    player.sendPrivateText(this.describeContentOfNewspaper());
+		    return true;
+		  } // if
+		  else 
+		    if (!player.nextTo(this))
 			{
-			  guiPanel = new NewspaperGUIPanel();
-			  return true;
+			  player.sendPrivateText("The item is too far away to be used.");
+			  return false;
 			} // if
-			else 
-			
-				if (!user.nextTo(this))
-				{
-					user.sendPrivateText("The item is too far away to be used.");
-					return false;
-				} // if
-				else
-				{
-					guiPanel = new NewspaperGUIPanel();
-					  return true;
-				}
+			else
+			{
+		      player.sendPrivateText(this.describeContentOfNewspaper());
+			  return true;
+			}//else
+		  
 		} // if
 		
 		return false;
 	} // onUsed
+	
+	
+	public String describeContentOfNewspaper() 
+	{
+	  String startOfInfo = "This is the most interesting newspaper!\nThese are your achiviements:\n";
+	  String info = null;
+	  try
+	  {
+		Set<String> hash_Set = new HashSet<String>();  
+		hash_Set = DAORegister.get().get(AchievementDAO.class).loadAllReachedAchievementsOfPlayer(player.getName());
+	    info = String.join(" ,", hash_Set);
+	  } // try
+      catch(SQLException e)
+	  {
+		System.out.println("An error has occured");		
+	  }
+	  return (startOfInfo + info);
+	}
+	
 } // class Newspaper
