@@ -20,9 +20,6 @@ import games.stendhal.server.entity.player.Player;
  * @author Adrian Szvoren
  */
 public class SigneeNPC implements ZoneConfigurator {
-	//
-	// ZoneConfigurator
-	//
 
 	/**
 	 * Configure a zone.
@@ -34,10 +31,6 @@ public class SigneeNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
-
-	//
-	// IceCreamSellerNPC
-	//
 
 	private void buildNPC(final StendhalRPZone zone) {
 			final SpeakerNPC npc = new SpeakerNPC("Signee") {
@@ -52,19 +45,6 @@ public class SigneeNPC implements ZoneConfigurator {
 				addGreeting("Hi. I wish I could learn #Java.");
 				addJob("I have no work because I am not educated.");
 				addQuest("I hope that we can attend a university some day.");
-
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.YES_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new ChatAction() {
-						@Override
-						public void fire(final Player player,final Sentence sentence, final EventRaiser npc) {
-							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy ice cream");
-							}
-						} );
-
 				addGoodbye("Bye, enjoy your day!");
 
 			}
