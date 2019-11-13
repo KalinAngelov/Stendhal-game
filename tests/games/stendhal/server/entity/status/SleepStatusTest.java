@@ -8,10 +8,11 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import utilities.PlayerTestHelper;
+import utilities.RPClass.CreatureTestHelper;
 import utilities.RPClass.ItemTestHelper;
 
 public class SleepStatusTest {
@@ -21,26 +22,29 @@ public class SleepStatusTest {
 	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
+		CreatureTestHelper.generateRPClasses();
 	}	
 	/**
-	 * Tests the sleeping bag movement freeze. 
+	 * Tests waking up from damage. 
 	 */
 	@Test
-	public void testSleepMovementFreeze() {
-		final Item sleepingBag = SingletonRepository.getEntityManager().getItem("sleeping bag");
-		assertNotNull(sleepingBag);
+	public void testWakeUpFromDamage() {
 		final Player player = PlayerTestHelper.createPlayer("bob");
 		assertNotNull(player);
+		Creature atkCreature = new Creature();
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		SingletonRepository.getRPWorld().addRPZone(zone);
+		
 		zone.add(player);
-
-		zone.add(sleepingBag);
-		sleepingBag.setPosition(1, 0);
-        int oldX = player.getX();
-        int oldY = player.getY();
-		assertTrue(sleepingBag.onUsed(player));
-		player.applyMovement();
-		assertTrue("The player should not be able to move", (oldX == player.getX() && oldY == player.getY()));
+		zone.add(atkCreature);
+		
+		StatusList playerStatus = player.getStatusList();
+        playerStatus.inflictStatus(new SleepStatus(), player);
+        
+        atkCreature.setAtkXP(100);
+		atkCreature.setTarget(player);
+		atkCreature.attack();
+		
+		assertTrue("The player should wake up when damaged", !player.hasStatus(StatusType.SLEEPING));
 	}
 }
