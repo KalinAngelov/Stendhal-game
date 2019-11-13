@@ -19,14 +19,14 @@ public class LonNPCTest extends ZonePlayerAndNPCTestImpl{
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 		setupZone(ZONE_NAME);
-	} // setUpBeforeClass
+	} 
 
 	// set the LonNPC, player and add tehm to the zone
 	public LonNPCTest() {
 		setNpcNames("Lon Jatham");
 		setZoneForPlayer(ZONE_NAME);
 		addZoneConfigurator(new LonNPC(), ZONE_NAME);
-	} // LonNPCTest
+	}
 
 	// test hi and bye behaviour of LonNPC
 	@Test
@@ -38,9 +38,9 @@ public class LonNPCTest extends ZonePlayerAndNPCTestImpl{
 		final Engine en = LonNPC.getEngine();
         // say hi to Lon and test for reply
 		assertTrue(en.step(player, "hi"));
-		assertEquals("Hello, I am Lon!", getReply(LonNPC));
+		assertEquals("Hello, I am Lon! I want to #recruit potential students for my course.", getReply(LonNPC));
         // say bye to Lon and test for reply
 		assertTrue(en.step(player, "bye"));
 		assertEquals("See you!", getReply(LonNPC));
-	} // testHiandBye
-} // LonNPCTest
+	}
+}

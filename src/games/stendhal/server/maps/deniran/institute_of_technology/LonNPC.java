@@ -5,12 +5,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 public class LonNPC implements ZoneConfigurator{
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
 	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
@@ -25,7 +19,7 @@ public class LonNPC implements ZoneConfigurator{
 	        }
         @Override
         protected void createDialog() {
-            addGreeting("Hello, I am Lon!");
+            addGreeting("Hello, I am Lon! I want to #recruit potential students for my course.");
             addGoodbye("See you!");
         }
     };

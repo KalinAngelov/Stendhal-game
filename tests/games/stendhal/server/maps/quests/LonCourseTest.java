@@ -80,7 +80,7 @@ public class LonCourseTest {
 
 		en.step(player, "Hi Lon, can I get an extension?");
 		assertEquals(
-				"Hello, I am Lon!",
+				"Hello, I am Lon! I want to #recruit potential students for my course.",
 				getReply(lon));
 		assertTrue(!player.hasQuest("lon_course"));
 
