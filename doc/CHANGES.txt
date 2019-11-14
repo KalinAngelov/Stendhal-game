@@ -1,6 +1,25 @@
 Changelog
 ---------
 ---------
+1.32
+*world*
+-New items:
+  -sleeping bag which allows you to enter a sleeping status, regenerating your health.(accessible to admins only)
+  -newspaper which allows you to see your achievements.(accessible to admins only)
+  
+-New NPCs:
+  -Lon Jatham in Deniran castle - quest giver for Lon's Course
+  -signee in Deniran that signs up for Lon's Course.
+  -newspaper salesman in Deniran who promotes the upcoming newspaper
+  
+-New quest:
+  -Lon's Course which makes you recruit a student for Lon Jatham's course (accessible to admins only)
+  
+-New status:
+  -Sleeping 
+    -regenerates a portion of your health over time
+    -can be terminated from damage, movement or by using the sleeping bag while asleep 
+
 1.31
 *fixes*
 - baby dragon now has minimal weight of 1

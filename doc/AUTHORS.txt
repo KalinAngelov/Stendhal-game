@@ -206,15 +206,22 @@ Notable contributors:
 
 - Kamil Synak
   · Bugs fixer
+  - Coder (creator of sleeping bag item)
 - Adrian Szvoren
   · Bugs fixer
+  - Coder (creator of signee NPC)
 - Nikolay Avramov
   · Bugs fixer
+  - Coder (creator of sleeping status)
 - Kalin Angelov
   · Bugs fixer
+  - Coder (creator of newspaper item)
 - Yecheng Chu
   · Bugs fixer
+  -Coder (creator of Lon Jatham NPC)
 - Jake Fitzwater
   · Bugs fixer
+  - Coder (creator of newspaper salesman)
 - Mateusz Wasilewski
   · Bugs fixer  
+  - Coder (creator of Lon's Course quest)
