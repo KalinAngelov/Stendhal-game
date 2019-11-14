@@ -12,7 +12,14 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
-
+/**
+ * A new NewspaperTest that checks if the newspaper is created 
+ * and what will happen when is tried to be used
+ * in the bag of a player or on the ground 
+ * 
+ * @author Kalin Angelov
+ *
+ */
 public class NewspaperTest 
 {
 	@BeforeClass
