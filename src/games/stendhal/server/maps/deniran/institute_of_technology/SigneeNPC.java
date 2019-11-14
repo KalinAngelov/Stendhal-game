@@ -3,16 +3,10 @@ package games.stendhal.server.maps.deniran.institute_of_technology;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * Builds an npc to sign up to the Deniran Institute of Technology.
