@@ -32,4 +32,24 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+<item name="newspaper">
+    <type class="book" subclass="newspaper" tileid="-1"/>
+    <description>This is our interesting newspaper. If you want to have a look, press read.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Newspaper"/>
+    <attributes>
+      <menu value="Read|Use"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+  
 </items>
+
+  
+

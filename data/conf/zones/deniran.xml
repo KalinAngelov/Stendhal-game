@@ -97,6 +97,7 @@
 			<parameter name="color_method">time</parameter>
 			<parameter name="weather">varying</parameter>
 		</attributes>
+		<configurator class-name="games.stendhal.server.maps.deniran.NewspaperSellerNPC" />
 
 		<entity x="54" y="68">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -182,15 +183,7 @@
 	</zone>
 
 
-	<zone name="0_deniran_se" level="0" x="499360" y="500128"
-		file="Level 0/deniran/deniran_se.tmx">
-
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="weather">varying</parameter>
-		</attributes>
-
-	</zone>
+	
 
 
 	<zone name="0_deniran_river_e" level="0" x="499360" y="500256"
@@ -239,6 +232,13 @@
 
 	<zone name="0_deniran_wall_s" level="0" x="499488" y="500128"
 		file="Level 0/deniran/deniran_wall_s.tmx">
+
+		<attributes>
+			<parameter name="color_method">time</parameter>
+			<parameter name="weather">varying</parameter>
+		</attributes>
+
+	</zone><zone name="0_deniran_se" level="0" x="499360" y="500128" file="Level 0/deniran/deniran_se.tmx">
 
 		<attributes>
 			<parameter name="color_method">time</parameter>

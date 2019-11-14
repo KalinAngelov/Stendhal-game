@@ -210,6 +210,7 @@ public class EntityViewFactory {
 		register("well_source", null, null, UseableEntity2DView.class);
 		
 		register("item", "tool", "sleeping_bag", UseableItem2DView.class);
+		register("item", "books", "newspaper", Item2DView.class);
 	}
 
 	/**
