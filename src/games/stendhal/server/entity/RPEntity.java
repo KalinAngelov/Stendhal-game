@@ -1309,7 +1309,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if (logger.isDebugEnabled() || Testing.DEBUG) {
 			logger.debug("Damaged " + damage + " points by " + attacker.getID());
 		}
-
+        // if the entity is asleep wake them up
+		if (this.hasStatus(StatusType.SLEEPING)) {
+			this.getStatusList().removeAll(StatusType.SLEEPING);
+		}
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
 			final int currentTurn = SingletonRepository.getRuleProcessor()

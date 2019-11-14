@@ -19,6 +19,7 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import marauroa.common.game.RPAction;
 
 /**
@@ -38,7 +39,10 @@ public class MoveAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(DIR)) {
 			final int dirval = action.getInt(DIR);
-
+			// if the player is sleeping wake them up
+			if (player.hasStatus(StatusType.SLEEPING)) {
+				player.getStatusList().removeAll(StatusType.SLEEPING);;
+			}
 			if (dirval < 0) {
 				player.removeClientDirection(Direction.build(-dirval));
 			} else {
